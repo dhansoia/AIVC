@@ -3,6 +3,10 @@ import config from '@payload-config'
 import { RootPage, generatePageMetadata } from '@payloadcms/next/views'
 import { importMap } from '../importMap'
 
+// Payload's admin requires a live DB connection — never prerender it.
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 type Args = {
   params: Promise<{ segments: string[] }>
   searchParams: Promise<{ [key: string]: string | string[] }>

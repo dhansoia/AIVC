@@ -2,6 +2,9 @@ import { redirect } from 'next/navigation'
 import { AdminShell } from '@/components/admin/AdminShell'
 import { getCurrentUser, canAccessAdminDashboard } from '@/lib/auth'
 
+// Auth-gated — must run at request time. Never prerender.
+export const dynamic = 'force-dynamic'
+
 export default async function AdminDashboardLayout({
   children,
 }: {

@@ -3,6 +3,9 @@ import { PortalShell } from '@/components/portal/PortalShell'
 import { getCurrentUser, canAccessPortal } from '@/lib/auth'
 import { DEMO_PROFILE } from '@/lib/portal-data'
 
+// Auth-gated — must run at request time. Never prerender.
+export const dynamic = 'force-dynamic'
+
 export default async function PortalLayout({
   children,
 }: {

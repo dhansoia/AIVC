@@ -2,6 +2,9 @@ import config from '@payload-config'
 import { NotFoundPage, generatePageMetadata } from '@payloadcms/next/views'
 import { importMap } from '../importMap'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 type Args = {
   params: Promise<{ segments: string[] }>
   searchParams: Promise<{ [key: string]: string | string[] }>

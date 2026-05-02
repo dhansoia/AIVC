@@ -95,11 +95,31 @@ export const DEMO_TERRITORIES: StateTerritory[] = INDIAN_STATES.map((s) =>
 )
 
 /**
+ * Returns true only when the runtime has a usable, non-localhost
+ * Postgres URL. In Vercel's build environment, fetches to our own
+ * routes are inlined, so naively calling /api/state-territories during
+ * build invokes Payload directly — which then tries to connect to
+ * the default localhost Postgres and 500s the entire build. Skip
+ * the fetch up front when DATABASE_URI isn't a real remote DB.
+ */
+function isDatabaseConfigured(): boolean {
+  const uri = process.env.DATABASE_URI
+  if (!uri) return false
+  if (uri.includes('localhost') || uri.includes('127.0.0.1')) {
+    return process.env.NODE_ENV === 'development'
+  }
+  return true
+}
+
+/**
  * Fetch all state territories from Payload, falling back to demo data
  * when the API is unavailable.
  */
 export async function getStateTerritories(): Promise<StateTerritory[]> {
   if (process.env.NEXT_PUBLIC_USE_DEMO_DATA === 'true') {
+    return DEMO_TERRITORIES
+  }
+  if (!isDatabaseConfigured()) {
     return DEMO_TERRITORIES
   }
 
