@@ -1,0 +1,5 @@
+/* Payload admin custom styles — gold accents */
+:root {
+  --theme-success-500: #16a34a;
+  --theme-warning-500: #d97706;
+}
