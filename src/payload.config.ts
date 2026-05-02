@@ -1,6 +1,7 @@
 import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -22,6 +23,8 @@ import { GovtRelationships } from './collections/GovtRelationships'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
+const useVercelBlob = !!process.env.BLOB_READ_WRITE_TOKEN
 
 export default buildConfig({
   admin: {
@@ -57,6 +60,18 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || '',
     },
   }),
+  // Vercel filesystems are read-only; in production we offload uploads to
+  // Vercel Blob. Locally, when BLOB_READ_WRITE_TOKEN is unset, Payload
+  // falls back to its default disk-based storage in /media.
+  plugins: useVercelBlob
+    ? [
+        vercelBlobStorage({
+          enabled: true,
+          collections: { media: true },
+          token: process.env.BLOB_READ_WRITE_TOKEN!,
+        }),
+      ]
+    : [],
   cors: [process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'].filter(Boolean),
   csrf: [process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'].filter(Boolean),
   upload: {

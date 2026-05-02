@@ -12,7 +12,7 @@ export default function FrontendLayout({
     <>
       <AnnouncementBar />
       <Navbar />
-      <main className="min-h-screen">{children}</main>
+      <main id="main-content" className="min-h-screen">{children}</main>
       <Footer />
       <WhatsAppButton />
     </>

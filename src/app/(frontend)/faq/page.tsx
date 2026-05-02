@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { PageHero } from '@/components/shared/PageHero'
 import { FAQAccordion } from '@/components/shared/FAQAccordion'
 import { SmartFAQChat } from '@/components/shared/SmartFAQChat'
+import { FAQJsonLd } from '@/components/seo/StructuredData'
 import { getFAQs } from '@/lib/content-data'
 
 export const metadata = {
@@ -17,6 +18,7 @@ export default async function FAQPage() {
 
   return (
     <>
+      <FAQJsonLd faqs={faqs.map((f) => ({ question: f.question, answer: f.answer }))} />
       <PageHero
         eyebrow="Help & Information"
         title="Frequently Asked Questions"

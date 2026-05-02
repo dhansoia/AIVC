@@ -54,17 +54,29 @@ Government & Institutional stakeholders, Press, and existing State Partners.
 - Subtle framer-motion animations (counters, reveals, map transitions)
 - Mobile-first, but desktop-optimized for business audience
 
-## Build Plan (10 Sessions)
-- **Session 1 ✅**: Foundation — Next.js + Payload + collections + base layout + home page
-- **Session 2**: Home polish, About, Leadership, Vision/Mission
-- **Session 3**: Partnership pages, Mini Fuel Pump pages, State Partner programme pages, ROI calculator, Government pages
-- **Session 4**: India map (react-simple-maps), state detail pages, network growth page
-- **Session 5**: Multi-step State Partner application form + Razorpay
-- **Session 6**: State Partner Portal (authenticated)
-- **Session 7**: AIVC National Admin Dashboard
-- **Session 8**: Media hub, blog, press, events, FAQ, contact, careers, legal
-- **Session 9**: AI features — Claude lead scoring, report narrative, smart FAQ
-- **Session 10**: SEO, performance, accessibility, deploy (PM2 + Nginx + SSL on Hostinger)
+## Build Plan (10 Sessions — ALL COMPLETE)
+- **Session 1 ✅**: Foundation — Next.js + Payload + 15 collections + base layout + home
+- **Session 2 ✅**: Home polish, About, Leadership, Vision/Mission, For-DP, For-PH
+- **Session 3 ✅**: Partnership, Mini Fuel Pump, State Partner programme + ROI calculator, Government
+- **Session 4 ✅**: India network map (regional grid) + state detail pages + growth story
+- **Session 5 ✅**: 8-step State Partner application form + Razorpay + email/WhatsApp
+- **Session 6 ✅**: State Partner Portal (authenticated, 8 pages)
+- **Session 7 ✅**: AIVC National Admin Dashboard (8 pages)
+- **Session 8 ✅**: Media hub, blog, press, events, FAQ, contact, careers, legal
+- **Session 9 ✅**: AI — Claude lead scoring, report narratives, smart FAQ chat
+- **Session 10 ✅**: SEO + accessibility + Vercel deployment
+
+## Deployment — Vercel
+The site is deployed to Vercel. Key choices:
+- **Database**: managed Postgres (Neon recommended) with `?sslmode=require`
+- **Media**: Vercel Blob — wired in `payload.config.ts` via `vercelBlobStorage`,
+  active when `BLOB_READ_WRITE_TOKEN` is set
+- **Function timeouts** (in `vercel.json`): AI routes 60s, Payload + upload 30s
+- **Region**: `bom1` (Mumbai) for low latency to Indian users
+- **Security headers**: `X-Frame-Options`, `X-Content-Type-Options`,
+  `Referrer-Policy`, `Permissions-Policy` set in `vercel.json`
+- **Image optimization**: `next/image` with AVIF/WebP, Vercel Blob hostname
+  in `next.config.mjs` `images.remotePatterns`
 
 ## Repo Conventions
 - All collections in `src/collections/`, registered in `src/payload.config.ts`
