@@ -8,6 +8,7 @@ import {
   adminNotificationEmail,
 } from '@/lib/resend'
 import { sendWhatsApp, applicationConfirmationMessage } from '@/lib/whatsapp'
+import { scoreApplication } from '@/app/api/ai/lead-score/route'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -49,6 +50,48 @@ export async function POST(req: NextRequest) {
         status: 'pending',
       } as never,
     })
+
+    // Best-effort AI lead scoring — populates leadScore + internalNotes if
+    // ANTHROPIC_API_KEY is set. Doesn't block the response on the LLM call.
+    scoreApplication({
+      entityName: data.entityName,
+      entityType: data.entityType,
+      pan: data.pan,
+      gst: data.gst,
+      annualTurnover: data.annualTurnover,
+      netWorth: data.netWorth,
+      yearsInBusiness: data.yearsInBusiness,
+      employees: data.employees,
+      experience: data.experience,
+      existingNetwork: data.existingNetwork,
+      govtRelationships: data.govtRelationships,
+      preferredState: data.preferredState,
+      operationalReadiness: data.operationalReadiness,
+      city: data.city,
+      state: data.state,
+      authorisedSignatory: { name: data.authorisedSignatory?.name },
+    })
+      .then(async (score) => {
+        if (!score) return
+        await payload.update({
+          collection: 'state-partner-applications',
+          id: created.id,
+          data: {
+            leadScore: score.leadScore,
+            internalNotes:
+              `[AI Tier ${score.tier}] ${score.summary}\n\n` +
+              `Financial: ${score.financialCapacity.score}/30 — ${score.financialCapacity.rationale}\n` +
+              `Experience: ${score.businessExperience.score}/25 — ${score.businessExperience.rationale}\n` +
+              `Territory: ${score.territoryPotential.score}/25 — ${score.territoryPotential.rationale}\n` +
+              `Readiness: ${score.operationalReadiness.score}/20 — ${score.operationalReadiness.rationale}\n` +
+              (score.concerns.length
+                ? `\nConcerns:\n${score.concerns.map((c) => `- ${c}`).join('\n')}`
+                : '') +
+              `\n\nRecommended: ${score.recommendedNextStep}`,
+          } as never,
+        })
+      })
+      .catch((err) => console.warn('[ai/lead-score] background failure', err))
 
     // Best-effort notifications — don't fail the submission if these throw
     const sigEmail = data.authorisedSignatory?.email

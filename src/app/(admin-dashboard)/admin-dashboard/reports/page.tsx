@@ -3,6 +3,10 @@ import {
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PageHeader, StatCard } from '@/components/portal/StatCard'
+import { AIReportGenerator } from '@/components/admin/AIReportGenerator'
+import {
+  DEMO_NATIONAL_SUMMARY, DEMO_NATIONAL_MONTHLY,
+} from '@/lib/admin-data'
 
 export const metadata = { title: 'AIVC Admin — Reports' }
 
@@ -73,60 +77,22 @@ export default function AdminReportsPage() {
         <StatCard label="Generated YTD" value="22" sublabel="Across templates" />
       </div>
 
-      {/* Generator panel */}
-      <div className="rounded-xl border-2 border-gold-300 bg-gold-50 p-5 md:p-6 mb-6">
-        <div className="flex items-start gap-3 mb-4">
-          <Sparkles className="h-7 w-7 text-gold-700 flex-shrink-0 mt-0.5" />
-          <div>
-            <div className="font-serif text-lg font-bold text-navy-900">
-              Custom report — generate with Claude
-            </div>
-            <div className="text-sm text-navy-700 mt-1">
-              Select date range, states, and metrics. Claude will draft an executive
-              summary alongside the data tables and charts.
-            </div>
-          </div>
-        </div>
-        <div className="grid sm:grid-cols-3 gap-4 mt-4">
-          <div>
-            <label className="block text-xs font-semibold text-navy-700 mb-1">Date Range</label>
-            <select className="w-full rounded-md border border-navy-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500">
-              <option>Last 1 month</option>
-              <option>Last 3 months</option>
-              <option>Year to date</option>
-              <option>Last 12 months</option>
-              <option>Custom...</option>
-            </select>
-          </div>
-          <div>
-            <label className="block text-xs font-semibold text-navy-700 mb-1">States</label>
-            <select className="w-full rounded-md border border-navy-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500">
-              <option>All states</option>
-              <option>Allotted only</option>
-              <option>By region...</option>
-              <option>Custom selection...</option>
-            </select>
-          </div>
-          <div>
-            <label className="block text-xs font-semibold text-navy-700 mb-1">Metrics</label>
-            <select className="w-full rounded-md border border-navy-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500">
-              <option>All metrics</option>
-              <option>Revenue & financials</option>
-              <option>Network & operations</option>
-              <option>Pipeline & leads</option>
-            </select>
-          </div>
-        </div>
-        <div className="mt-4 flex flex-wrap gap-3">
-          <Button variant="gold">
-            <Sparkles className="h-4 w-4" />
-            Generate Report
-          </Button>
-          <Button variant="outline">
-            <Download className="h-4 w-4" />
-            Recent Reports
-          </Button>
-        </div>
+      {/* AI Generator panel */}
+      <div className="mb-6">
+        <AIReportGenerator
+          defaultReportType="monthly"
+          period={DEMO_NATIONAL_MONTHLY[DEMO_NATIONAL_MONTHLY.length - 1]?.month ?? 'Sep 2026'}
+          metrics={{
+            summary: DEMO_NATIONAL_SUMMARY,
+            currentMonth: DEMO_NATIONAL_MONTHLY[DEMO_NATIONAL_MONTHLY.length - 1],
+            history: DEMO_NATIONAL_MONTHLY,
+          }}
+          comparison={
+            DEMO_NATIONAL_MONTHLY.length >= 2
+              ? DEMO_NATIONAL_MONTHLY[DEMO_NATIONAL_MONTHLY.length - 2]
+              : undefined
+          }
+        />
       </div>
 
       <div className="grid md:grid-cols-2 gap-5">
