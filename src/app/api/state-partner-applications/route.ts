@@ -8,7 +8,7 @@ import {
   adminNotificationEmail,
 } from '@/lib/resend'
 import { sendWhatsApp, applicationConfirmationMessage } from '@/lib/whatsapp'
-import { scoreApplication } from '@/app/api/ai/lead-score/route'
+import { scoreApplication } from '@/lib/ai/lead-score'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
