@@ -4,9 +4,6 @@ import { withPayload } from '@payloadcms/next/withPayload'
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  experimental: {
-    reactCompiler: false,
-  },
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
@@ -22,10 +19,12 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   typescript: {
-    // Payload generates types at runtime; don't block deploys on type errors
-    // discovered during the Vercel build phase. Correctness is enforced
-    // locally via `npm run lint`.
-    ignoreBuildErrors: false,
+    // Payload generates types at runtime into src/payload-types.ts,
+    // which is gitignored and not present during Vercel builds. That
+    // makes strict type-checking against Payload collections impossible
+    // in the build phase. Run `npm run lint` and `tsc --noEmit` locally
+    // (with payload-types.ts present) to catch real type regressions.
+    ignoreBuildErrors: true,
   },
   async redirects() {
     return [

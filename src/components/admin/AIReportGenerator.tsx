@@ -6,8 +6,10 @@ import { Button } from '@/components/ui/button'
 
 interface AIReportGeneratorProps {
   defaultReportType?: 'monthly' | 'quarterly' | 'annual' | 'state-snapshot' | 'pipeline-health'
-  metrics: Record<string, unknown>
-  comparison?: Record<string, unknown>
+  // The endpoint serializes whatever is passed here as JSON for the
+  // Claude prompt — the structure is opaque to the component.
+  metrics: unknown
+  comparison?: unknown
   period: string
 }
 
