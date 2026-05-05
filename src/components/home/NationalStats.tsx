@@ -1,4 +1,4 @@
-import { MapPin, Building2, Fuel, TrendingUp } from 'lucide-react'
+import { MapPin, Building2, Fuel, Users } from 'lucide-react'
 import { AnimatedCounter } from '@/components/shared/AnimatedCounter'
 import { Reveal } from '@/components/shared/Reveal'
 import { SectionHeader } from '@/components/shared/SectionHeader'
@@ -26,12 +26,11 @@ const STATS = [
     description: 'Mini fuel pumps to be deployed',
   },
   {
-    icon: TrendingUp,
-    value: 4500,
-    suffix: ' Cr+',
-    prefix: '₹',
-    label: 'Network GMV Vision',
-    description: 'At full national rollout',
+    icon: Users,
+    value: 100000,
+    suffix: '+',
+    label: 'Direct Livelihoods',
+    description: 'Rural employment at full rollout',
   },
 ]
 

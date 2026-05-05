@@ -1,5 +1,5 @@
 import {
-  Tractor, Truck, Sprout, Users2, MapPin, IndianRupee, Globe2, Heart,
+  Tractor, Truck, Sprout, Users2, MapPin, Network, Globe2, Heart,
   Briefcase,
 } from 'lucide-react'
 import { PageHero } from '@/components/shared/PageHero'
@@ -16,7 +16,7 @@ const IMPACT_STATS = [
   { icon: Users2, value: '1L+', label: 'Direct livelihoods', description: 'Pump Holders, district staff, technicians, drivers, and field operations.' },
   { icon: MapPin, value: '500+', label: 'Districts reached', description: 'Decentralized fuel access in talukas, villages, and underserved areas.' },
   { icon: Tractor, value: '5L+', label: 'Farmers served', description: 'Last-mile diesel for tractors, harvesters, pump-sets, and farm equipment.' },
-  { icon: IndianRupee, value: '₹4,500Cr+', label: 'Network GMV', description: 'At full national rollout — distributed across the partner value chain.' },
+  { icon: Network, value: '4-Tier', label: 'Shared Value Chain', description: 'Network economics distributed across Pump Holders, District, State, and National partners.' },
 ]
 
 const PILLARS = [

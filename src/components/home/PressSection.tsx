@@ -18,7 +18,7 @@ const PLACEHOLDER_RELEASES = [
       'First State Partner network operational, with district appointments underway across all 36 districts.',
   },
   {
-    title: 'AIVC announces ₹4,500 Cr national network vision',
+    title: 'AIVC announces national network vision',
     date: 'March 2026',
     location: 'New Delhi',
     excerpt:

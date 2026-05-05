@@ -24,7 +24,7 @@ const SECTIONS = [
   {
     heading: 'Forward-Looking Statements',
     paragraphs: [
-      'Statements about the network\'s decade-long vision — including 1,00,000+ pumps, 500+ districts, ₹4,500 Cr+ network GMV, employment outcomes, and SDG / policy alignment — are forward-looking. They reflect AIVC\'s targets and operating intent at the time of publication.',
+      'Statements about the network\'s decade-long vision — including 1,00,000+ pumps, 500+ districts, employment outcomes, and SDG / policy alignment — are forward-looking. They reflect AIVC\'s targets and operating intent at the time of publication.',
       'Forward-looking statements are subject to known and unknown risks, including regulatory changes, market conditions, partner execution, supply chain dynamics, and macro factors. Actual outcomes may vary materially.',
     ],
   },

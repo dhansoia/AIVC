@@ -106,14 +106,14 @@ export const DEMO_PRESS_RELEASES: PressRelease[] = [
   },
   {
     slug: 'national-vision-announcement',
-    title: 'AIVC announces ₹4,500 Cr national network vision over the next decade',
+    title: 'AIVC announces national network vision over the next decade',
     releaseDate: '15 Mar 2026',
     location: 'New Delhi',
     summary:
       'AIVC unveils its decade-long national vision: 1,00,000+ mini fuel pumps deployed across 500+ districts, creating 1,00,000+ direct livelihoods and reaching 5L+ farmers with last-mile diesel access.',
     body: [
       'Speaking at a press conference in the capital, AIVC leadership unveiled the network\'s decade-long national vision — building India\'s largest decentralised fuel infrastructure programme through the appointed State Partner network.',
-      'Targets: 1,00,000+ mini fuel pumps deployed across 500+ districts, 1,00,000+ direct livelihoods (Pump Holders, technicians, district staff), 5L+ farmers reached with last-mile diesel access for tractors and farm equipment, and ₹4,500 Cr+ in network GMV.',
+      'Targets: 1,00,000+ mini fuel pumps deployed across 500+ districts, 1,00,000+ direct livelihoods (Pump Holders, technicians, district staff), and 5L+ farmers reached with last-mile diesel access for tractors and farm equipment.',
       'The vision aligns with several flagship national missions — Aatmanirbhar Bharat, PM Kisan Energy Suraksha, Make in India, Skill India, Stand-Up India, and Digital India — and maps to UN SDGs 7, 8, 9, and 10.',
     ],
     category: 'government',
@@ -297,14 +297,14 @@ export const DEMO_FAQS: FAQItem[] = [
     order: 1,
     question: 'How much is the State Partner investment?',
     answer:
-      '₹4,88,80,000 one-time, all-inclusive: ₹1 Cr registration fee + 30 starter pumps at the discounted partner price. Detailed breakdown is on the Investment page.',
+      'The State Partner investment is structured as a one-time institutional outlay covering territorial mandate, registration fee, and a defined number of starter pumps at the partner-discount price. Specific figures are shared by AIVC during the term sheet stage of onboarding — please contact AIVC for a detailed briefing.',
   },
   {
     category: 'state-partner',
     order: 2,
     question: 'What does a State Partner earn?',
     answer:
-      'Four streams: ₹10 L per District Partner appointment + ₹1.20 L margin on every pump sold + ₹1.20 L sales incentive on every pump sold + ₹0.30/litre recurring fuel commission on every litre dispensed across the state.',
+      'Four streams: a defined share of every District Partner registration, pump sales margin on every pump sold across the state, a per-pump sales incentive (perpetual), and a per-litre recurring fuel commission on every litre dispensed across the state network. Specific rates are shared during onboarding.',
   },
   {
     category: 'state-partner',
@@ -332,14 +332,14 @@ export const DEMO_FAQS: FAQItem[] = [
     order: 2,
     question: 'How much is the District Partner investment?',
     answer:
-      '₹1,02,76,000 one-time: ₹25 L registration fee (₹10 L to State Partner, ₹15 L to AIVC) + 6 starter pumps.',
+      'The District Partner investment is structured as a one-time outlay covering registration (split between State Partner and AIVC) and a defined number of starter pumps. Specific figures are shared by your State Partner directly — AIVC can route enquiries.',
   },
   {
     category: 'district-partner',
     order: 3,
     question: 'What does a District Partner earn?',
     answer:
-      '₹1.20 L margin per pump sold + ₹1.20 L sales incentive per pump + ₹0.40/litre recurring fuel commission across all pumps in the district.',
+      'A defined margin per pump sold, a per-pump sales incentive, and a per-litre recurring fuel commission on every litre dispensed across all pumps in the district. Specific rates are shared by your State Partner during onboarding.',
   },
   {
     category: 'pump-holder',
@@ -353,7 +353,7 @@ export const DEMO_FAQS: FAQItem[] = [
     order: 2,
     question: 'What does a Pump Holder pay & earn?',
     answer:
-      'Pay: ₹14,16,000 MRP (one-time, includes pump unit + GST). Earn: ₹2.50/litre commission on every litre dispensed, plus retail margin on the pump operations.',
+      'Pump pricing (MRP, inclusive of GST) and per-litre commission rates are shared by your local District Partner. AIVC routes Pump Holder enquiries to the appropriate District Partner via the State Partner network.',
   },
   {
     category: 'technical',

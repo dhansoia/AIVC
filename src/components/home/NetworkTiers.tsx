@@ -16,7 +16,7 @@ const TIERS = [
     label: 'State',
     title: 'State Partners',
     description:
-      'One per state. Investment ₹4,88,80,000. Owns the entire state operation, district appointments, and network buildout.',
+      'One per state. Owns the entire state operation, district appointments, and network buildout under an institutional MOU.',
     color: 'from-gold-600 to-gold-700',
   },
   {
@@ -24,7 +24,7 @@ const TIERS = [
     label: 'District',
     title: 'District Partners',
     description:
-      '12+ per state. Investment ₹1,02,76,000. Builds and manages the local pump network, brand presence, and operations.',
+      'Multiple per state. Builds and manages the local pump network, brand presence, training, and on-ground operations.',
     color: 'from-emerald-600 to-emerald-700',
   },
   {

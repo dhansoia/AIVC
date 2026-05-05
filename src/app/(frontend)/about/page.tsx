@@ -45,7 +45,7 @@ const STATS = [
   { value: '36', label: 'States & UTs', sublabel: 'PAN India mandate' },
   { value: '500+', label: 'Districts', sublabel: 'Targeted at full rollout' },
   { value: '4-tier', label: 'Network', sublabel: 'National → Pump Holder' },
-  { value: '₹3.50/L', label: 'Margin Pool', sublabel: 'Across the value chain' },
+  { value: '1L+', label: 'Pump Vision', sublabel: 'Decentralized rural rollout' },
 ]
 
 const VALUES = [

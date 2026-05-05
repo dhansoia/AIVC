@@ -4,11 +4,12 @@ import {
 import { PageHero } from '@/components/shared/PageHero'
 import { SectionHeader } from '@/components/shared/SectionHeader'
 import { Reveal } from '@/components/shared/Reveal'
+import { ContactToLearnMore } from '@/components/shared/ContactToLearnMore'
 
 export const metadata = {
   title: 'MOU Highlights',
   description:
-    'Public-safe summary of the key terms of the AIVC × iFuel national partnership agreement.',
+    'Public-safe summary of the structural pillars of the AIVC × iFuel national partnership agreement.',
 }
 
 const HIGHLIGHTS = [
@@ -34,7 +35,7 @@ const HIGHLIGHTS = [
     icon: Scale,
     title: 'Pricing Framework',
     description:
-      'Pump base price ₹12,00,000 + GST. 10% discount available for State and District Partners. MRP ₹14,16,000. Margins, incentives, and commission flows are codified in the MOU.',
+      'Pump pricing, partner-tier discounts, and downstream margins are codified in the MOU. Partner discounts apply to State and District Partners. Specific figures are shared with applicants during onboarding.',
   },
   {
     icon: Shield,
@@ -50,53 +51,20 @@ const HIGHLIGHTS = [
   },
 ]
 
-const TERMS = [
-  {
-    label: 'Pump Pricing',
-    value: '₹12L base + 18% GST = ₹14.16L MRP',
-    detail: '10% partner discount on base.',
-  },
-  {
-    label: 'State Partner Investment',
-    value: '₹4,88,80,000',
-    detail: '₹1Cr registration + 30 starter pumps.',
-  },
-  {
-    label: 'District Partner Investment',
-    value: '₹1,02,76,000',
-    detail: '₹25L registration + 6 starter pumps.',
-  },
-  {
-    label: 'Per-pump 10% incentive',
-    value: '₹1,20,000',
-    detail: 'Paid to both State and District Partners.',
-  },
-  {
-    label: 'Per-litre Commission Pool',
-    value: '₹3.50',
-    detail: '₹2.50 + ₹0.40 + ₹0.30 + ₹0.30',
-  },
-  {
-    label: 'Network Capacity Vision',
-    value: '1,00,000+ pumps',
-    detail: 'Across 500+ districts at full rollout.',
-  },
-]
-
 export default function MOUHighlightsPage() {
   return (
     <>
       <PageHero
         eyebrow="Partnership"
         title="MOU Highlights"
-        description="A public-safe summary of the principal terms of the AIVC × iFuel agreement. The full MOU is exchanged confidentially during the State Partner onboarding process."
+        description="A public-safe summary of the structural pillars of the AIVC × iFuel agreement. Specific commercial terms, pricing schedules, and earnings frameworks are shared with applicants during the institutional onboarding process."
         variant="navy"
       />
 
       <section className="py-16 md:py-20 bg-white">
         <div className="container">
           <SectionHeader
-            eyebrow="Six Key Pillars"
+            eyebrow="Six Structural Pillars"
             title="What the MOU establishes"
             description="Every State Partner appointment, District Partner agreement, and pump deployment ladders up to these six pillars."
           />
@@ -117,29 +85,13 @@ export default function MOUHighlightsPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-navy-50">
-        <div className="container max-w-4xl">
-          <SectionHeader
-            eyebrow="Codified Numbers"
-            title="The commercial framework"
-            description="Pricing, investment thresholds, and commission flows that the MOU codifies — published openly so every partner can verify the terms."
+      <section className="py-12 bg-navy-50">
+        <div className="container max-w-3xl">
+          <ContactToLearnMore
+            enquiryType="state-partnership"
+            title="Specific MOU terms, pricing, and commercial framework"
+            description="Detailed commercial clauses — pricing schedules, sales incentive structure, fuel commission rates, performance milestones, exit provisions — are shared with qualified applicants under NDA during the institutional onboarding process."
           />
-
-          <div className="mt-12 grid sm:grid-cols-2 gap-4">
-            {TERMS.map((t, idx) => (
-              <Reveal key={t.label} delay={idx * 0.05}>
-                <div className="rounded-xl border border-navy-100 bg-white p-5">
-                  <div className="text-xs uppercase tracking-wider text-navy-500 font-semibold">
-                    {t.label}
-                  </div>
-                  <div className="font-serif text-xl font-bold text-navy-900 mt-1">
-                    {t.value}
-                  </div>
-                  <div className="text-xs text-navy-500 mt-1">{t.detail}</div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 

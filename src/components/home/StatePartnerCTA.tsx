@@ -1,15 +1,14 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
-import { BUSINESS, formatINR } from '@/lib/constants'
 
 const HIGHLIGHTS = [
-  `One-time investment: ${formatINR(BUSINESS.STATE_TOTAL)} (₹1Cr registration + 30 starter pumps)`,
-  'Exclusive rights to one Indian state — appoint District Partners across all districts',
-  '10% incentive (₹1.20L) on every pump sold in the state — perpetual',
-  '₹0.30/litre national + ₹0.30/litre state commission on all fuel sold',
+  'Exclusive operational rights to one Indian state — appoint District Partners across all districts',
+  'Sales incentive on every pump sold in your state — perpetual, structured into the partner agreement',
+  'Recurring share of fuel commission on every litre dispensed across the state network',
   'Full national branding, marketing, training & operational support from AIVC',
-  'Multi-tier revenue: registrations, pump margins, fuel commission, incentives',
+  'Multi-tier revenue: district appointments, pump sales margin, fuel commission, sales incentive',
+  'Detailed commercial terms shared by AIVC after document verification and territory confirmation',
 ]
 
 export function StatePartnerCTA() {
@@ -39,12 +38,12 @@ export function StatePartnerCTA() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild variant="gold" size="lg">
                   <Link href="/become-state-partner/apply">
-                    Apply Now
+                    Begin Application
                     <ArrowRight className="h-5 w-5" />
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="bg-white/5 border-white/30 text-white hover:bg-white/10">
-                  <Link href="/become-state-partner/calculator">Use ROI Calculator</Link>
+                  <Link href="/contact?type=state-partnership">Contact AIVC</Link>
                 </Button>
               </div>
             </div>

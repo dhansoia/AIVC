@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, MapPin, Users, Fuel, IndianRupee } from 'lucide-react'
+import { ArrowRight, MapPin, Users, Fuel, Network } from 'lucide-react'
 
 export function NationalHero() {
   return (
@@ -82,7 +82,7 @@ export function NationalHero() {
             <HeroStat icon={MapPin} value="28+8" label="States & UTs" />
             <HeroStat icon={Users} value="500+" label="Districts" />
             <HeroStat icon={Fuel} value="1L+" label="Pumps Vision" />
-            <HeroStat icon={IndianRupee} value="₹3.50/L" label="Network Margin" />
+            <HeroStat icon={Network} value="4-tier" label="Partner Network" />
           </motion.div>
         </div>
       </div>

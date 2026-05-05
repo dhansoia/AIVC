@@ -1,34 +1,19 @@
 import Link from 'next/link'
 import {
-  Fuel, IndianRupee, Wrench, ShieldCheck, ArrowRight, CheckCircle2,
-  Map, GraduationCap,
+  Fuel, Wrench, ShieldCheck, ArrowRight, CheckCircle2,
+  Map, GraduationCap, Repeat,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PageHero } from '@/components/shared/PageHero'
 import { SectionHeader } from '@/components/shared/SectionHeader'
 import { Reveal } from '@/components/shared/Reveal'
-import { BUSINESS, formatINR } from '@/lib/constants'
+import { ContactToLearnMore } from '@/components/shared/ContactToLearnMore'
 
 export const metadata = {
   title: 'For Pump Holders',
   description:
-    'How individual Indian entrepreneurs become Pump Holders in the AIVC × iFuel network — investment, training, and earnings.',
+    'How individual Indian entrepreneurs become Pump Holders in the AIVC × iFuel network — role, training, and earnings framework.',
 }
-
-const ECONOMICS = [
-  { label: 'MRP per pump', value: formatINR(BUSINESS.PUMP_MRP), detail: 'Inclusive of GST' },
-  {
-    label: 'Margin to your District Partner',
-    value: formatINR(BUSINESS.PUMP_MARGIN),
-    detail: 'Per pump sold',
-  },
-  {
-    label: 'Fuel commission to you',
-    value: '₹2.50 / litre',
-    detail: 'On every litre sold',
-    highlight: true,
-  },
-]
 
 const WHO = [
   {
@@ -77,7 +62,7 @@ export default function ForPumpHoldersPage() {
             <div className="text-sm text-navy-800">
               <span className="font-semibold">Pump Holders are appointed by District Partners</span>{' '}
               — not directly by AIVC. To express interest, identify the State Partner for
-              your state and we will route you to your local District Partner.
+              your state and AIVC will route you to your local District Partner.
             </div>
           </div>
         </div>
@@ -92,55 +77,51 @@ export default function ForPumpHoldersPage() {
           />
 
           <div className="grid md:grid-cols-3 gap-5 mt-12">
-            {ECONOMICS.map((e, idx) => (
-              <Reveal key={e.label} delay={idx * 0.1}>
-                <div
-                  className={
-                    e.highlight
-                      ? 'rounded-xl p-6 bg-gradient-to-br from-gold-600 to-gold-700 text-white h-full'
-                      : 'rounded-xl p-6 bg-navy-50 border border-navy-100 h-full'
-                  }
-                >
-                  <div
-                    className={
-                      'text-xs uppercase tracking-wider font-semibold mb-2 ' +
-                      (e.highlight ? 'text-gold-100' : 'text-navy-500')
-                    }
-                  >
-                    {e.label}
-                  </div>
-                  <div
-                    className={
-                      'font-serif text-2xl md:text-3xl font-bold ' +
-                      (e.highlight ? 'text-white' : 'text-navy-900')
-                    }
-                  >
-                    {e.value}
-                  </div>
-                  <div
-                    className={
-                      'text-xs mt-3 ' + (e.highlight ? 'text-gold-100' : 'text-navy-500')
-                    }
-                  >
-                    {e.detail}
-                  </div>
+            <Reveal>
+              <div className="rounded-xl p-6 bg-navy-50 border border-navy-100 h-full">
+                <Fuel className="h-7 w-7 text-gold-600 mb-3" />
+                <div className="text-xs uppercase tracking-wider text-navy-500 font-semibold mb-2">
+                  One-time Pump Purchase
                 </div>
-              </Reveal>
-            ))}
+                <p className="text-sm text-navy-700 leading-relaxed">
+                  Buy a certified iFuel mini fuel pump unit at MRP from your District
+                  Partner — including GST and installation by certified technicians.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="rounded-xl p-6 bg-gradient-to-br from-gold-600 to-gold-700 text-white h-full">
+                <Repeat className="h-7 w-7 text-gold-100 mb-3" />
+                <div className="text-xs uppercase tracking-wider text-gold-100 font-semibold mb-2">
+                  Recurring Fuel Commission
+                </div>
+                <p className="text-sm leading-relaxed">
+                  Earn a defined per-litre share on every litre dispensed at your pump —
+                  recurring monthly settlement, plus any retail margin you make at the pump.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <div className="rounded-xl p-6 bg-navy-50 border border-navy-100 h-full">
+                <ShieldCheck className="h-7 w-7 text-gold-600 mb-3" />
+                <div className="text-xs uppercase tracking-wider text-navy-500 font-semibold mb-2">
+                  Long-term Income
+                </div>
+                <p className="text-sm text-navy-700 leading-relaxed">
+                  Run the pump as a real business at your location. Recurring fuel
+                  commission accrues for the duration of pump operation.
+                </p>
+              </div>
+            </Reveal>
           </div>
 
-          <Reveal>
-            <div className="mt-10 rounded-lg border border-navy-100 bg-navy-50 p-5 text-sm text-navy-700">
-              <span className="font-semibold">Worked example:</span>{' '}
-              At {BUSINESS.LITRES_PER_MONTH.toLocaleString('en-IN')}L/month volume, fuel
-              commission alone is{' '}
-              <span className="font-semibold text-gold-700">
-                {formatINR(BUSINESS.FUEL_COMM.PUMP_HOLDER * BUSINESS.LITRES_PER_MONTH)} /
-                month
-              </span>
-              {' '}— recurring, monthly, on top of any retail margin you make at the pump.
-            </div>
-          </Reveal>
+          <div className="max-w-3xl mx-auto mt-10">
+            <ContactToLearnMore
+              enquiryType="pump-holder"
+              title="Pump pricing and commission rates"
+              description="Specific figures — pump MRP, per-litre commission, training fees if any — are shared by your local District Partner. AIVC can route your enquiry to the appropriate District Partner via the India Map."
+            />
+          </div>
         </div>
       </section>
 
@@ -212,7 +193,7 @@ export default function ForPumpHoldersPage() {
             </h2>
             <p className="mt-4 text-navy-200 leading-relaxed">
               Pump Holder applications are processed by District Partners locally. Identify
-              the State Partner for your state, and we will route you to the appropriate
+              the State Partner for your state, and AIVC will route you to the appropriate
               District Partner.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -228,7 +209,7 @@ export default function ForPumpHoldersPage() {
                 size="lg"
                 className="bg-white/5 border-white/30 text-white hover:bg-white/10"
               >
-                <Link href="/contact">Talk to AIVC</Link>
+                <Link href="/contact?type=pump-holder">Talk to AIVC</Link>
               </Button>
             </div>
           </div>

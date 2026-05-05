@@ -124,7 +124,7 @@ export type StatePartnerFormData = z.infer<typeof fullStatePartnerSchema>
 
 export const STEP_LABELS = [
   'Entity', 'Contact', 'Financial', 'Territory',
-  'Investment', 'Documents', 'Payment', 'Declaration',
+  'Next Steps', 'Documents', 'Submission', 'Declaration',
 ] as const
 
 export const STEP_FIELDS: (keyof StatePartnerFormData)[][] = [

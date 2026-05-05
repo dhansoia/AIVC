@@ -1,4 +1,4 @@
-import { Users2, Tractor, Sprout, IndianRupee } from 'lucide-react'
+import { Users2, Tractor, Sprout, Network } from 'lucide-react'
 import { Reveal } from '@/components/shared/Reveal'
 import { SectionHeader } from '@/components/shared/SectionHeader'
 
@@ -23,10 +23,10 @@ const IMPACTS = [
     description: 'Decentralized energy infrastructure powered by Indian entrepreneurs.',
   },
   {
-    icon: IndianRupee,
-    value: '₹3.50/L',
-    label: 'Network Margin',
-    description: 'Shared between Pump Holder, District, State & National partners.',
+    icon: Network,
+    value: '4-Tier Model',
+    label: 'Shared Value Chain',
+    description: 'Network margin shared across Pump Holder, District, State & National tiers.',
   },
 ]
 

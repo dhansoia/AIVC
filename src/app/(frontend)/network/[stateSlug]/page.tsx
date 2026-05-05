@@ -13,7 +13,7 @@ import {
   type StateTerritory,
 } from '@/lib/network-data'
 import { STATE_STATUS_COLORS } from '@/lib/india-states'
-import { formatINR, formatNumber, BUSINESS } from '@/lib/constants'
+import { formatNumber } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 
 export const revalidate = 60
@@ -201,22 +201,13 @@ export default async function StateDetailPage({
             {state.monthlyFuelVolume > 0 && (
               <div className="mt-8 rounded-xl border border-navy-100 bg-white p-6">
                 <div className="text-xs uppercase tracking-wider text-gold-700 font-semibold mb-1">
-                  Monthly network commission across all tiers
+                  Network commission distribution
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-3">
-                  {([
-                    ['Pump Holders', BUSINESS.FUEL_COMM.PUMP_HOLDER],
-                    ['District', BUSINESS.FUEL_COMM.DISTRICT],
-                    ['State', BUSINESS.FUEL_COMM.STATE],
-                    ['AIVC', BUSINESS.FUEL_COMM.NATIONAL],
-                  ] as const).map(([label, rate]) => (
-                    <div key={label}>
-                      <div className="text-xs text-navy-500">{label}</div>
-                      <div className="font-mono font-semibold text-navy-900">
-                        {formatINR(state.monthlyFuelVolume * rate)}
-                      </div>
-                    </div>
-                  ))}
+                <div className="text-sm text-navy-700 mt-2 leading-relaxed">
+                  Monthly fuel commission across the four tiers — Pump Holders,
+                  District Partners, State Partner, and AIVC — is settled monthly
+                  based on actual dispensed volume. Tier-wise rates are codified
+                  in the State Partner MOU.
                 </div>
               </div>
             )}

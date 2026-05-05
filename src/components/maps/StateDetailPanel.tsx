@@ -10,7 +10,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { STATE_STATUS_COLORS } from '@/lib/india-states'
 import type { StateTerritory } from '@/lib/network-data'
-import { formatNumber, formatINR } from '@/lib/constants'
+import { formatNumber } from '@/lib/constants'
 
 interface StateDetailPanelProps {
   state: StateTerritory | null
@@ -165,13 +165,11 @@ function PanelContent({
             {state.activePumps > 0 && (
               <div className="mt-4 rounded-lg border border-navy-100 bg-navy-50 p-4">
                 <div className="text-xs uppercase tracking-wider text-navy-500 font-semibold mb-1">
-                  Estimated network commission (monthly)
+                  Network commission distribution
                 </div>
-                <div className="font-mono font-bold text-navy-900">
-                  {formatINR(state.monthlyFuelVolume * 3.5)} / month
-                </div>
-                <div className="text-xs text-navy-500 mt-1">
-                  Across all four tiers — pumps, district, state, AIVC.
+                <div className="text-sm text-navy-700 mt-1 leading-relaxed">
+                  A defined per-litre share is distributed monthly across all four
+                  tiers — Pump Holders, District, State, and AIVC.
                 </div>
               </div>
             )}

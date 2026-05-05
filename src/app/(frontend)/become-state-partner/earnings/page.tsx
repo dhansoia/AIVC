@@ -1,267 +1,134 @@
 import Link from 'next/link'
 import {
-  IndianRupee, Calendar, Repeat, TrendingUp, Calculator, ArrowRight,
+  IndianRupee, Repeat, TrendingUp, Award, ArrowRight,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PageHero } from '@/components/shared/PageHero'
 import { SectionHeader } from '@/components/shared/SectionHeader'
 import { Reveal } from '@/components/shared/Reveal'
-import { EarningsTable, FuelCommissionTable } from '@/components/shared/EarningsTable'
-import { BUSINESS, formatINR } from '@/lib/constants'
+import { ContactToLearnMore } from '@/components/shared/ContactToLearnMore'
 
 export const metadata = {
-  title: 'State Partner — Earnings Illustration',
+  title: 'State Partner — Earnings Framework',
   description:
-    'Worked monthly, annual, and 5-year earnings illustration for a State Partner — across all four revenue streams.',
+    'How a State Partner earns: four revenue streams across one-time and recurring components. Specific figures shared by AIVC during onboarding.',
 }
 
-// Working assumptions for the illustration
-const NUM_DISTRICTS = BUSINESS.DISTRICTS_PER_STATE // 12
-const PUMPS_PER_DISTRICT = BUSINESS.DISTRICT_TOTAL_PUMPS // 40
-const TOTAL_PUMPS = NUM_DISTRICTS * PUMPS_PER_DISTRICT // 480
-const LITRES_PER_PUMP_MONTH = BUSINESS.LITRES_PER_MONTH // 10,000
+const STREAMS = [
+  {
+    icon: IndianRupee,
+    title: 'District Partner Registration Share',
+    type: 'One-time',
+    description:
+      'Each time the State Partner appoints a District Partner within their state, a defined portion of the District Partner registration fee accrues to the State Partner. Recognised at the time of district appointment.',
+  },
+  {
+    icon: TrendingUp,
+    title: 'Pump Sales Margin',
+    type: 'Per pump',
+    description:
+      'A defined margin on every pump sold across the state at MRP — accruing whether the sale is by the State Partner or by a District Partner downstream.',
+  },
+  {
+    icon: Award,
+    title: 'Sales Incentive (Perpetual)',
+    type: 'Per pump',
+    description:
+      'A per-pump incentive paid to the State Partner on every pump sold within the state — for the duration of the State Partnership. Designed to align long-term interests with network expansion.',
+  },
+  {
+    icon: Repeat,
+    title: 'Recurring Fuel Commission',
+    type: 'Recurring',
+    description:
+      'A per-litre share of the network fuel commission pool — settled monthly based on actual dispensed volume across the state. The compounding component of long-term State Partner economics.',
+  },
+]
 
-// One-time earnings (when full state is built out)
-const oneTimeRegistrations = NUM_DISTRICTS * BUSINESS.DISTRICT_REG_STATE_SHARE
-const oneTimePumpMargins = TOTAL_PUMPS * BUSINESS.PUMP_MARGIN
-const oneTimeIncentives = TOTAL_PUMPS * BUSINESS.INCENTIVE_PER_PUMP
-const oneTimeTotal = oneTimeRegistrations + oneTimePumpMargins + oneTimeIncentives
-
-// Monthly recurring (at full rollout)
-const monthlyFuelLitres = TOTAL_PUMPS * LITRES_PER_PUMP_MONTH
-const monthlyCommission = monthlyFuelLitres * BUSINESS.FUEL_COMM.STATE
-const annualCommission = monthlyCommission * 12
-
-// 5-year cumulative recurring (assuming full rollout from year 1)
-const fiveYearCommission = annualCommission * 5
-
-export default function EarningsIllustrationPage() {
+export default function EarningsFrameworkPage() {
   return (
     <>
       <PageHero
         eyebrow="State Partner"
-        title="Earnings Illustration"
-        description={`A worked example based on ${NUM_DISTRICTS} districts × ${PUMPS_PER_DISTRICT} pumps × ${LITRES_PER_PUMP_MONTH.toLocaleString('en-IN')}L/month — the standard build-out assumptions for a typical Indian state.`}
+        title="Earnings Framework"
+        description="State Partner economics are built on four distinct revenue streams — one-time accruals from district appointments and pump sales, plus recurring fuel commission. The framework is designed for compounding income over a multi-year horizon."
         variant="navy"
       />
 
-      {/* Assumptions */}
-      <section className="bg-gold-50 border-y border-gold-200 py-6">
-        <div className="container max-w-5xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-            {[
-              { label: 'Districts', value: NUM_DISTRICTS },
-              { label: 'Pumps / district', value: PUMPS_PER_DISTRICT },
-              { label: 'Total pumps', value: TOTAL_PUMPS },
-              { label: 'Litres / pump / month', value: LITRES_PER_PUMP_MONTH.toLocaleString('en-IN') },
-            ].map((a) => (
-              <div key={a.label}>
-                <div className="text-xs uppercase tracking-wider text-navy-500 font-semibold">
-                  {a.label}
-                </div>
-                <div className="font-mono font-bold text-navy-900 text-lg">{a.value}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* One-time earnings */}
-      <section className="py-16 bg-white">
-        <div className="container max-w-5xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <Reveal>
-              <div>
-                <IndianRupee className="h-10 w-10 text-gold-600 mb-4" />
-                <div className="text-xs uppercase tracking-widest text-gold-700 font-semibold mb-2">
-                  Stream 1 — One-Time Earnings
-                </div>
-                <h2 className="font-serif text-3xl font-bold text-navy-900 leading-tight">
-                  At full rollout: {formatINR(oneTimeTotal)}
-                </h2>
-                <p className="mt-4 text-navy-600 leading-relaxed">
-                  As you onboard District Partners and they sell pumps to Pump Holders,
-                  three one-time streams accumulate — district registration share, pump
-                  sales margin, and the 10% sales incentive on every pump sold in the state.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <EarningsTable
-                title="One-Time Earnings"
-                subtitle="At full state build-out"
-                rows={[
-                  {
-                    label: 'District registration share',
-                    detail: `${NUM_DISTRICTS} districts × ${formatINR(BUSINESS.DISTRICT_REG_STATE_SHARE)}`,
-                    value: oneTimeRegistrations,
-                  },
-                  {
-                    label: 'Pump sales margin',
-                    detail: `${TOTAL_PUMPS} pumps × ${formatINR(BUSINESS.PUMP_MARGIN)}`,
-                    value: oneTimePumpMargins,
-                  },
-                  {
-                    label: '10% sales incentive',
-                    detail: `${TOTAL_PUMPS} pumps × ${formatINR(BUSINESS.INCENTIVE_PER_PUMP)}`,
-                    value: oneTimeIncentives,
-                  },
-                ]}
-                total={{ label: 'Total one-time earnings', value: oneTimeTotal }}
-              />
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Recurring earnings */}
-      <section className="py-16 bg-navy-50">
-        <div className="container max-w-5xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <Reveal>
-              <div>
-                <Repeat className="h-10 w-10 text-gold-600 mb-4" />
-                <div className="text-xs uppercase tracking-widest text-gold-700 font-semibold mb-2">
-                  Stream 2 — Recurring Fuel Commission
-                </div>
-                <h2 className="font-serif text-3xl font-bold text-navy-900 leading-tight">
-                  ₹{BUSINESS.FUEL_COMM.STATE.toFixed(2)} per litre, every litre, forever
-                </h2>
-                <p className="mt-4 text-navy-600 leading-relaxed">
-                  Once the network is operating, the State Partner earns recurring
-                  commission on every litre dispensed across the state — month after
-                  month, year after year, for the duration of the partnership.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <EarningsTable
-                title="Recurring Earnings — Monthly"
-                subtitle={`At ${TOTAL_PUMPS} pumps × ${LITRES_PER_PUMP_MONTH.toLocaleString('en-IN')}L volume`}
-                rows={[
-                  {
-                    label: 'Total monthly fuel volume',
-                    detail: `${TOTAL_PUMPS} × ${LITRES_PER_PUMP_MONTH.toLocaleString('en-IN')}L`,
-                    value: monthlyFuelLitres,
-                  },
-                  {
-                    label: 'State Partner commission',
-                    detail: `${monthlyFuelLitres.toLocaleString('en-IN')}L × ₹${BUSINESS.FUEL_COMM.STATE.toFixed(2)}`,
-                    value: monthlyCommission,
-                  },
-                ]}
-                total={{ label: 'Annual recurring commission', value: annualCommission }}
-              />
-            </Reveal>
-          </div>
-
-          <div className="mt-12 max-w-4xl mx-auto">
-            <Reveal>
-              <FuelCommissionTable highlightRole="STATE" />
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* 5-year projection */}
       <section className="py-16 bg-white">
         <div className="container max-w-5xl">
           <SectionHeader
-            eyebrow="5-Year Projection"
-            title="What this looks like over five years"
-            description="Assuming the network reaches full operational rollout from year 1 — the recurring fuel commission alone."
+            eyebrow="Four Revenue Streams"
+            title="The State Partner earnings model"
+            description="The structure — the rates, percentages, and projection methodology come during onboarding."
           />
 
-          <div className="grid md:grid-cols-5 gap-3 mt-12">
-            {[1, 2, 3, 4, 5].map((y, idx) => (
-              <Reveal key={y} delay={idx * 0.06}>
-                <div
-                  className={
-                    idx === 4
-                      ? 'rounded-xl bg-gradient-to-br from-gold-600 to-gold-700 text-white p-5 text-center'
-                      : 'rounded-xl bg-navy-50 border border-navy-100 p-5 text-center'
-                  }
-                >
-                  <div
-                    className={
-                      'text-xs uppercase tracking-wider font-semibold mb-1 ' +
-                      (idx === 4 ? 'text-gold-100' : 'text-navy-500')
-                    }
-                  >
-                    Year {y}
+          <div className="grid md:grid-cols-2 gap-5 mt-12">
+            {STREAMS.map((s, idx) => (
+              <Reveal key={s.title} delay={idx * 0.08}>
+                <div className="rounded-xl border border-navy-100 bg-navy-50 p-6 h-full">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gold-50 border border-gold-200 flex-shrink-0">
+                      <s.icon className="h-5 w-5 text-gold-700" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] uppercase tracking-widest text-gold-700 font-semibold">
+                        {s.type}
+                      </div>
+                      <h3 className="font-serif text-lg font-bold text-navy-900 leading-tight">
+                        {s.title}
+                      </h3>
+                    </div>
                   </div>
-                  <div
-                    className={
-                      'font-serif text-xl md:text-2xl font-bold ' +
-                      (idx === 4 ? 'text-white' : 'text-navy-900')
-                    }
-                  >
-                    {formatINR(annualCommission)}
-                  </div>
-                  <div
-                    className={
-                      'text-xs mt-2 ' + (idx === 4 ? 'text-gold-100' : 'text-navy-500')
-                    }
-                  >
-                    Cumulative: {formatINR(annualCommission * y)}
-                  </div>
+                  <p className="text-sm text-navy-600 leading-relaxed">{s.description}</p>
                 </div>
               </Reveal>
             ))}
           </div>
-
-          <Reveal>
-            <div className="mt-10 rounded-xl bg-navy-900 text-white p-8 text-center">
-              <TrendingUp className="h-8 w-8 text-gold-400 mx-auto mb-3" />
-              <div className="text-xs uppercase tracking-widest text-gold-400 font-semibold">
-                5-Year Recurring Total
-              </div>
-              <div className="font-serif text-4xl md:text-5xl font-bold text-white mt-2">
-                {formatINR(fiveYearCommission)}
-              </div>
-              <p className="mt-3 text-sm text-navy-300 max-w-xl mx-auto">
-                Recurring fuel commission alone — excludes one-time registrations
-                ({formatINR(oneTimeRegistrations)}), pump margins ({formatINR(oneTimePumpMargins)}),
-                and 10% incentives ({formatINR(oneTimeIncentives)}).
-              </p>
-            </div>
-          </Reveal>
         </div>
       </section>
 
-      {/* Disclaimer */}
-      <section className="py-10 bg-navy-50">
+      <section className="py-12 bg-navy-50">
         <div className="container max-w-4xl">
-          <div className="rounded-lg border border-navy-200 bg-white p-5">
+          <div className="rounded-md border border-navy-200 bg-white p-5">
             <div className="text-xs uppercase tracking-wider text-navy-500 font-semibold mb-2">
               Important disclosure
             </div>
             <p className="text-sm text-navy-600 leading-relaxed">
-              These figures are illustrative projections based on the working assumptions
-              shown above. Actual earnings depend on the pace of district appointments,
-              pump deployment, fuel volumes, regional demand, and partner execution.
-              They are not guaranteed returns. The State Partner agreement governs all
-              commercial terms.
+              State Partner earnings are not guaranteed returns. Actual outcomes depend
+              on the pace of district appointments, pump deployment, fuel volumes, regional
+              demand, and partner execution. The MOU is the only binding source of
+              commercial terms — public materials including this page describe the
+              framework, not specific figures.
             </p>
           </div>
         </div>
       </section>
 
       <section className="py-12 bg-white">
+        <div className="container max-w-3xl">
+          <ContactToLearnMore
+            enquiryType="state-partnership"
+            title="Specific rates, percentages, and earnings illustrations"
+            description="The institutional engagement team shares earnings methodology, indicative tables, and worked examples during the briefing stage — accompanied by appropriate context, assumptions, and disclosure language."
+          />
+        </div>
+      </section>
+
+      <section className="py-12 bg-navy-50">
         <div className="container max-w-4xl">
           <div className="rounded-2xl bg-gradient-to-br from-navy-900 to-navy-800 p-8 md:p-12 text-white text-center">
-            <Calculator className="h-8 w-8 text-gold-400 mx-auto mb-3" />
             <h2 className="font-serif text-2xl md:text-3xl font-bold leading-tight">
-              Tune these numbers for your own state
+              Talk to AIVC about the earnings framework
             </h2>
             <p className="mt-3 text-navy-200">
-              Use the interactive ROI calculator to vary districts, pumps, and fuel
-              volumes — see your projection update live.
+              An introductory call covers the four revenue streams, indicative
+              illustrations, and how state-specific factors affect projections.
             </p>
             <div className="mt-6 flex flex-wrap gap-3 justify-center">
               <Button asChild variant="gold" size="lg">
-                <Link href="/become-state-partner/calculator">
-                  Open ROI Calculator
+                <Link href="/contact?type=state-partnership">
+                  Request a Briefing
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
@@ -271,7 +138,7 @@ export default function EarningsIllustrationPage() {
                 size="lg"
                 className="bg-white/5 border-white/30 text-white hover:bg-white/10"
               >
-                <Link href="/become-state-partner/apply">Apply Now</Link>
+                <Link href="/become-state-partner/apply">Begin Application</Link>
               </Button>
             </div>
           </div>
